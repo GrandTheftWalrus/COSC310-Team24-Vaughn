@@ -14,6 +14,7 @@ from rasa_sdk.events import (
 )
 
 import requests
+import re
 
 class ActionSlotReset(Action):
     def name(self) -> Text:
@@ -52,16 +53,37 @@ class ActionCheckWeather(Action):
         dispatcher.utter_message(response)
         return [SlotSet('weather_location', loc)]
 
+class ActionGetWikipediaDescription(Action):
+    def name(self) -> Text:
+        return "action_get_wikipedia_description"
+
+    def run(self, dispatcher, tracker, domain):
+        subjectSearch = tracker.get_slot('wikipedia_subject_slot')
+        wikiPageSearchResults = requests.get('https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch={}&format=json'.format(subjectSearch)).json()
+        title = wikiPageSearchResults['query']['search'][0]['title']
+        pageId = wikiPageSearchResults['query']['search'][0]['pageid']
+        wikiPage = requests.get('https://en.wikipedia.org/w/api.php?action=query&prop=extracts&format=json&exintro=&titles={}'.format(title)).json()
+        description = wikiPage['query']['pages'][str(pageId)]['extract']
+        
+        #Get rid of the HTML tags
+        tagSelector = re.compile('<.*?>')
+        newLineSpamSelector = re.compile('(\\n){2,}')
+        newLineSingleSelector = re.compile('\\n')
+        description = re.sub(tagSelector, '', description)                  #Gets rid of tags
+        description = re.sub(newLineSpamSelector, '', description)          #Gets rid of spammed \n's (but leaves the single \n's)
+        description = re.sub(newLineSingleSelector, '<br>', description)    #Changes single \n's to <br> cuz html
+        response = """Here is a description of {} from Wikipedia:<br>{}""".format(title, description)
+        print(response)
+        dispatcher.utter_message(response)
+        return [SlotSet('wikipedia_subject_slot', subjectSearch)]
+
 class ActionSubmitHotelForm(Action):
-    
     def name(self) -> Text:
         return "action_hotelForm"
         
     @staticmethod
     def required_slots(tracker: Tracker) -> List[Text]:
         return ["hotel_local", "check_in", "number_Adults", "number_rooms", "check_out"]
-    
-
     
     def run(self, dispatcher, tracker, domain):
        

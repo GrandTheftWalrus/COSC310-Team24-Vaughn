@@ -8,9 +8,6 @@ language: en
 
 pipeline:
   # - name: "spellchecker.CorrectSpelling"
-  - name: SpacyNLP
-  - name: SpacyTokenizer
-  - name: SpacyFeaturizer
   - name: "WhitespaceTokenizer"
   - name: "RegexFeaturizer"
   - name: "LexicalSyntacticFeaturizer"
@@ -19,6 +16,7 @@ pipeline:
     analyzer: char_wb
     min_ngram: 1
     max_ngram: 4
+  - name: "RegexEntityExtractor"
   - name: "DIETClassifier"
     epochs: 200
     constrain_similarities: true

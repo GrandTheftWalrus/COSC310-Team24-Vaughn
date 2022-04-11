@@ -11,6 +11,7 @@ intents:
   - weather
   - weather_for_loc
   - city_info
+  - wikipedia_query
   - bot_name
   - name
   - what_canU_do
@@ -27,12 +28,20 @@ intents:
 
 entities: 
   - weather_loc
+  - wikipedia_subject
   - date
   - name
   - hotel_location
   - number
 
 slots:
+  wikipedia_subject_slot:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: wikipedia_subject
+  
   weather_location:
     type: text
     influence_conversation: false
@@ -323,6 +332,7 @@ actions:
   - action_flight_form2
   - action_slot_reset
   - action_chat_restart
+  - action_get_wikipedia_description
 
 session_config:
   session_expiration_time: 60
