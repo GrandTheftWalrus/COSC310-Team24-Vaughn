@@ -326,3 +326,4 @@ The bot would have understood if the input was phrased less context-dependently,
 The bot does not recognize the name "Vaughn" as a name, like it would for others such as "Dingus", and in turn also thinks that the user was asking the bot to recall their name, which it does not know
 ![Demonstration of bad output](https://user-images.githubusercontent.com/70998757/160222101-3f149f63-9a3d-4ece-90e9-c6333ef59d69.jpg)
 
+# COSC310-Team24-Vaughn
