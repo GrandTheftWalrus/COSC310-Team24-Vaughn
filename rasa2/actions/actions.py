@@ -7,6 +7,7 @@ from rasa_sdk import Action, Tracker
 from rasa_sdk.types import DomainDict
 from rasa_sdk.forms import FormValidationAction
 from rasa_sdk.executor import CollectingDispatcher
+from google.cloud import translate_v2 as translate
 from rasa_sdk.events import (
     SlotSet,
     AllSlotsReset,
@@ -75,7 +76,24 @@ class ActionGetWikipediaDescription(Action):
         response = """Here is a description of {} from Wikipedia:<br>{}""".format(title, description)
         print(response)
         dispatcher.utter_message(response)
-        return [SlotSet('wikipedia_subject_slot', subjectSearch)]
+        return []
+
+class ActionGetTranslation(Action):
+    def name(self) -> Text:
+        return "action_get_translation"
+
+    def run(self, dispatcher, tracker, domain):
+        translate_client = translate.Client()
+        target = tracker.get_slot('target_language_slot')
+        text = tracker.get_slot('translation_text_slot')
+        print("target_language_slot = " + str(target))
+        print("translation_text_slot = " + str(text))
+        result = translate_client.translate(text, target_language=target)['translatedText']
+        print(result)
+        response = """The translation of your sentence from English to {}, is:<br>{}""".format(target, result)
+        print(response)
+        dispatcher.utter_message(response)
+        return []
 
 class ActionSubmitHotelForm(Action):
     def name(self) -> Text:

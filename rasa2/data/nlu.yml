@@ -142,6 +142,33 @@ nlu:
     - What does wikipedia say about [japan](wikipedia_subject)?
     - What does wikipedia say about [england](wikipedia_subject)?
 
+- intent: translation_query
+  examples: |
+    - How do you say [hello](translation_text) in [french](target_language)?
+    - How do you say [hello](translation_text) in [spanish](target_language)?
+    - How do you say [hello](translation_text) in [japanese](target_language)?
+    - How do you say [hello](translation_text) in [german](target_language)?
+    - How do you say [hello](translation_text) in [russian](target_language)?
+    - How do you say [hello](translation_text) in [arabic](target_language)?
+    - How do you say [goodbye](translation_text) in [french](target_language)?
+    - How do you say [goodbye](translation_text) in [spanish](target_language)?
+    - How do you say [goodbye](translation_text) in [japanese](target_language)?
+    - How do you say [goodbye](translation_text) in [german](target_language)?
+    - How do you say [goodbye](translation_text) in [russian](target_language)?
+    - How do you say [goodbye](translation_text) in [arabic](target_language)?
+    - How do you say [hello](translation_text) in [fr](target_language)?
+    - How do you say [hello](translation_text) in [es](target_language)?
+    - How do you say [hello](translation_text) in [ja](target_language)?
+    - How do you say [hello](translation_text) in [de](target_language)?
+    - How do you say [hello](translation_text) in [ru](target_language)?
+    - How do you say [hello](translation_text) in [ar](target_language)?
+    - How do you say [goodbye](translation_text) in [fr](target_language)?
+    - How do you say [goodbye](translation_text) in [es](target_language)?
+    - How do you say [goodbye](translation_text) in [ja](target_language)?
+    - How do you say [goodbye](translation_text) in [de](target_language)?
+    - How do you say [goodbye](translation_text) in [ru](target_language)?
+    - How do you say [goodbye](translation_text) in [ar](target_language)?
+
 - intent: bot_name
   examples: |
     - what is your name?
@@ -356,6 +383,42 @@ nlu:
     - αστεία λές
     - rasa codigo abierto
     - 卧槽
+
+- synonym: fr
+  examples: |
+    - French
+    - french
+    - fr
+  
+- synonym: de
+  examples: |
+    - German
+    - german
+    - de
+
+- synonym: ja
+  examples: |
+    - Japanese
+    - japanese
+    - ja
+
+- synonym: ru
+  examples: |
+    - Russian
+    - russian
+    - ru
+
+- synonym: es
+  examples: |
+    - Spanish
+    - spanisg
+    - es
+
+- synonym: ar
+  examples: |
+    - Arabic
+    - arabic
+    - ar
 
 - lookup: wikipedia_subject
   examples: |

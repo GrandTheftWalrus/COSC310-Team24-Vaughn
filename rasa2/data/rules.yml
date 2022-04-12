@@ -26,6 +26,11 @@ rules:
     - intent: wikipedia_query
     - action: action_get_wikipedia_description
 
+- rule: translate
+  steps:
+    - intent: translation_query
+    - action: action_get_translation
+
 - rule: getcity
   steps:
     - intent: city_info

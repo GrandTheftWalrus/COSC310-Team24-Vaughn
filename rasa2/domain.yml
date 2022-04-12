@@ -26,13 +26,15 @@ intents:
   - one_way
   - out_of_scope
 
-entities: 
+entities:
   - weather_loc
   - wikipedia_subject
   - date
   - name
   - hotel_location
   - number
+  - translation_text
+  - target_language
 
 slots:
   wikipedia_subject_slot:
@@ -41,6 +43,20 @@ slots:
     mappings:
     - type: from_entity
       entity: wikipedia_subject
+
+  target_language_slot:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: target_language
+
+  translation_text_slot:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: translation_text
   
   weather_location:
     type: text
@@ -333,6 +349,7 @@ actions:
   - action_slot_reset
   - action_chat_restart
   - action_get_wikipedia_description
+  - action_get_translation
 
 session_config:
   session_expiration_time: 60
