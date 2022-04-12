@@ -279,6 +279,34 @@ Since we are using a conversation model, we define tests as test stories that pr
   Spellchecker is a python script used within the pipeline to correct for user spelling errors that might otherwise confuse the model in its prediction of intent. The file uses pyspellchecker to comb through each word found in the response string. The method process is used to split the sentence into tokens that are then corrected and concatenated back into a string. This custom module must be incorporated into the user's path to allow the python interpreter the ability to see the new pipeline file created.
   
   # Project Status Updates
+  
+  ## Individual Project
+  
+For the individual project, I have implemented two new APIs that users can make use of when chatting to the bot.
+
+### Wikipedia API
+
+The first new addition is the Wikipedia API, which lets the users ask the Travel Bot for a description of any country they like, and have returned to them the entire first section of the corresponding Wikipedia page for that country. The bot best responds to requests phrased like:
+
+-What is it like in [country]?
+
+-What does wikipedia say about [country]?
+
+-Can I get a description of [country]?
+
+-What is [country] like?
+
+![image](https://user-images.githubusercontent.com/70998757/162905760-c1b2803c-9adc-41a5-9be5-bcc32dd6e37d.png)
+
+The bot also only works (theoretically) with countries, which is on purpose (so that off-topic or nsfw things don't come up). The wikipedia API call functionality could be improved on, though, by including cities and geographical areas.
+
+### Google Translate API
+
+The second new addition is the Google Translate API, which lets the users ask the Travel Bot how to say any sentence, in any language, and have the proper translation returnedo them (also theoretically). I had to set up a big old Google Cloud API service account type of thing, and deal with mapping names of languages like "French" to their corresponding ISO 639-2 codes, like 'fr', in order for the API call to work.
+
+![image](https://user-images.githubusercontent.com/70998757/162905971-1ed8a0ee-e507-4e12-b3b5-ea6219f04f35.png)
+  
+  ## Submission 3
 
 -Made the user interface much fancier
 
